@@ -4,6 +4,11 @@ body {
     margin: auto;
 }
 
+canvas{
+  
+    background: lightgrey;
+}
+
 fieldset {
     margin:0.5em;
     border: 1px solid #777;
