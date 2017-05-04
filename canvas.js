@@ -7,7 +7,7 @@ var app = angular.module('canvasApp', []);
 
 
 var drawing = new Drawing();
-drawing.init({fn: "1.7sin(12x)/e^((0.8x*log(0.3x^2))^2)"});
+drawing.init({fn: "sin(7x)/7x"});
 drawing.draw();
 
 app.controller('canvasController', [
