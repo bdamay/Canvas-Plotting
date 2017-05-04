@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <style>
+        #canvas {
+            height:50vh;
+        }
+
+    </style>
+</head>
+<body>
+<div ng-app="canvasApp" id="canvasApp">
+    <div ng-controller="canvasController" id="canvasController">
+        <h2>Plot a math function:</h2>
+        <fieldset>
+            <div class="fn">
+                <label for="fn">f(x)= </label>
+                <input id="fn" ng-model="fn" type="text" ng-change="update()" autofocus>
+            </div>
+            <div class="alert alert-danger" ng-show="fnInvalid">
+                Function is invalid <br /> {{ fnInvalid }}
+            </div>
+
+        </fieldset>
+        <div>
+            <button ng-click="toggleSettings()">Hide/Show settings ( {{showSettings}} )</button>
+        </div>
+
+        <fieldset ng-show="showSettings">
+            <legend>Settings</legend>
+            <div><label for="line-width">Line width: </label>
+                <input id="line-width" type="range" ng-model="lineWidth" ng-change="update()" step="1" min="1" max="10"/></div>
+            <div><label for="minx">Minx </label>
+                <input id="minx" class ="axesbounds" type="number" ng-model="minx" ng-change="update()" step="1" width="2" /></div>
+            <div><label for="maxx">Maxx </label>
+                <input id="maxx" class ="axesbounds" type="number" ng-model="maxx" ng-change="update()" step="1" size="2" /></div>
+            <div><label for="miny">Miny </label>
+                <input id="miny" class ="axesbounds" type="number" ng-model="miny" ng-change="update()" step="1" size="2" /></div>
+            <div><label for="maxy">Maxy </label>
+                <input id="maxy" class ="axesbounds" type="number" ng-model="maxy" ng-change="update()" step="1" size="2" /></div>
+        </fieldset>
+        <div id="canvas">
+            <canvas id="schema"></canvas>
+        </div>
+    </div>
+    <div>
+        <p>Notes:</p>
+        <ul>
+            <li>Uses AngularJs to get immediate effect on changes </li>
+            <li>Uses Math.js to parse expression and calculate points </li>
+            <li>Uses flexboxes and vh for dimensionning canvas</li>
+            <li>complex are allowed: try "exp(i*x) + exp(-i*x)" ... Thanks to Math.js</li>
+
+        </ul>
+    </div>
+    <div>
+        <p>TODO list as a reminder:</p>
+        <ul>
+            <li>Store last changes of UI in cookies (my generic UI object) </li>
+            <li>Resize canvas or app (UI object)</li>
+            <li>Color picker</li>
+            <li>line width with cursor</li>
+        </ul>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="lib/math.js"></script>
+    <script src="canvas.js"></script>
+</body>
+</html>
